@@ -17,7 +17,6 @@ def register(dto):
         hash_password = generate_password_hash(dto.password)
 
         username_taken = User.objects(username=dto.username).first()
-        email_taken = User.objects(email=dto.email).first()
 
         if username_taken:
             return {
@@ -25,15 +24,8 @@ def register(dto):
                 "message": "Username already taken",
             }, 400
 
-        if email_taken:
-            return {
-                "status": 400,
-                "message": "Email already taken",
-            }, 400
-
         new_user = User(
             username=dto.username,
-            email=dto.email,
             password=hash_password
         )
         new_user.save()
