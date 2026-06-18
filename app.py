@@ -1,7 +1,6 @@
 from routes.auth_routes import auth_bp
 from flask import Flask
 from dotenv import load_dotenv
-import os
 from database import *
 from flask_jwt_extended import JWTManager
 

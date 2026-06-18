@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from flask import Blueprint, jsonify
 from dtos.user_dto import CreateUserDto, LoginDto
 from validators.validate_body import validate_body
@@ -34,7 +36,7 @@ def register(dto):
             "message": "User created successfully",
             "data": {
                 "username": new_user.username,
-                "access_token": create_access_token(identity=str(new_user.id)),
+                "access_token": create_access_token(identity=str(new_user.id), expires_delta=timedelta(hours=24)),
             }
         }, 201
 
