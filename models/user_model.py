@@ -8,5 +8,6 @@ class User(BaseDocument):
     public_id = StringField(default=lambda: generate(size=10), unique=True)
 
     meta = {
-        "collection": "users"
+        "collection": "users",
+        "strict": False,
     }
