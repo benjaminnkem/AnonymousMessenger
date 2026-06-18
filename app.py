@@ -1,8 +1,11 @@
+import os
+
 from routes.auth_routes import auth_bp
 from flask import Flask
 from dotenv import load_dotenv
 from database import *
 from flask_jwt_extended import JWTManager
+from flask_cors import CORS
 
 from routes.message_route import message_bp
 from routes.user_routes import user_bp
@@ -10,6 +13,7 @@ from routes.user_routes import user_bp
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app, origins="*", supports_credentials=True)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['JWT_SECRET_KEY'] = os.environ.get('SECRET_KEY', 'jwt_secret_key')
 
